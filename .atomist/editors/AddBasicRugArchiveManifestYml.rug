@@ -15,8 +15,8 @@
  */
  @tag "rug"
  @tag "atomist"
-@description "Adds a new basic manifest.yml to the project"
-editor AddBasicManifestYml
+@description "adds a new basic Rug Archive manifest.yml to a project"
+editor AddBasicRugArchiveManifestYml
 
 @description "Name of your new project."
 @displayName "Project Name"

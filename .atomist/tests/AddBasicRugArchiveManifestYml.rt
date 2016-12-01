@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-scenario AddBasicPomAndAssembly to an existing project
+scenario AddBasicRugArchiveManifestYml to an existing project
 
 let project_name = "MyProject"
 
 given
-  ArchiveRoot
+  Empty
 
 when
-  AddBasicManifestYml
+  AddBasicRugArchiveManifestYml
 
 then
   fileExists ".atomist/manifest.yml"

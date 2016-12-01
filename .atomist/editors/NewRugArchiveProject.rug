@@ -15,18 +15,18 @@
  */
 @tag "rug"
 @tag "atomist"
-@description "Creates a new Rug Archive project"
-@generator "Rug Archive Project"
+@description "creates a new Rug Archive project"
+@generator
 editor NewRugArchiveProject
+
+uses atomist-rugs.common-editors.RemoveApacheSoftwareLicense20
 
 @maxLength 21
 @description "Name of your new project."
 @displayName "Project Name"
 param project_name: @project_name
 
-@default "mygroup"
 @description "Group id: Used by Maven"
-@optional
 @displayName "Group ID"
 @validInput "A valid Maven Group ID, often used to indicate your company, group or open source project"
 param group_id: @group_id
@@ -45,14 +45,9 @@ param version: @semantic_version
 @validInput "Free Text"
 param description: .*
 
-@maxLength 21
-@description "Name of a new initial editor that will be added to the project."
-@displayName "Initial Editor Name"
-param editor_name: @project_name
-
 SwitchReadmes
-AddBasicManifestYml
-DeleteLicense
+AddBasicRugArchiveManifestYml
+RemoveApacheSoftwareLicense20
 AddCreationDateToReadme
 
 @description "Switches READMEs replacing markers with a set of parameters"
@@ -71,19 +66,19 @@ param description: .*
 
 let template = "readme.vm"
 
-with project p
+with project
 	do merge template to "README.md"
 
 
 @description "Adds a creation date to the README.md"
 editor AddCreationDateToReadme
 
-with file f when path = "README.md"
+with file when path = "README.md"
 	do replace "{{creation_date}}" { new Date().toISOString().split('T')[0] }
 
 
 @description "Delete license file from the template content"
 editor DeleteLicense
 
-with project p
+with project
 	do deleteFile "LICENSE"
