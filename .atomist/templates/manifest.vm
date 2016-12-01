@@ -1,0 +1,9 @@
+group: $group_id
+artifact: $project_name
+version: "${version}"
+
+requires: "[0.4.0,1.0.0)"
+
+dependencies:
+
+extensions:

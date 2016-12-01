@@ -1,0 +1,42 @@
+/*
+ * Copyright 2016 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ @tag "rug"
+ @tag "atomist"
+@description "Adds a new basic manifest.yml to the project"
+editor AddBasicManifestYml
+
+@description "Name of your new project."
+@displayName "Project Name"
+param project_name: @project_name
+
+@default "mygroup"
+@description "Group id: Used by Maven"
+@optional
+@displayName "Group ID"
+@validInput "A valid Maven Group ID, often used to indicate your company, group or open source project"
+param group_id: @group_id
+
+@default "0.0.1-SNAPSHOT"
+@displayName "Semantic Version"
+@optional
+@description "A Semantic Version number of the form: MAJOR.MINOR.PATCH"
+@validInput "MAJOR.MINOR.PATCH"
+param version: @semantic_version
+
+let manifestTemplate = "manifest.vm"
+
+with project p
+	do merge manifestTemplate to ".atomist/manifest.yml"

@@ -1,0 +1,89 @@
+/*
+ * Copyright 2016 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+@tag "rug"
+@tag "atomist"
+@description "Creates a new Rug Archive project"
+@generator "Rug Archive Project"
+editor NewRugArchiveProject
+
+@maxLength 21
+@description "Name of your new project."
+@displayName "Project Name"
+param project_name: @project_name
+
+@default "mygroup"
+@description "Group id: Used by Maven"
+@optional
+@displayName "Group ID"
+@validInput "A valid Maven Group ID, often used to indicate your company, group or open source project"
+param group_id: @group_id
+
+@default "0.1.0"
+@displayName "Semantic Version"
+@optional
+@description "A Semantic Version number of the form: MAJOR.MINOR.PATCH"
+@validInput "MAJOR.MINOR.PATCH"
+param version: @semantic_version
+
+@default "My new project"
+@optional
+@description "Description of the new project"
+@displayName "description"
+@validInput "Free Text"
+param description: .*
+
+@maxLength 21
+@description "Name of a new initial editor that will be added to the project."
+@displayName "Initial Editor Name"
+param editor_name: @project_name
+
+SwitchReadmes
+AddBasicManifestYml
+DeleteLicense
+AddCreationDateToReadme
+
+@description "Switches READMEs replacing markers with a set of parameters"
+editor SwitchReadmes
+
+@description "Name of the new project"
+@displayName "Name"
+param project_name: @project_name
+
+@default ""
+@optional
+@description "Description of the new project"
+@displayName "description"
+@validInput "Free Text"
+param description: .*
+
+let template = "readme.vm"
+
+with project p
+	do merge template to "README.md"
+
+
+@description "Adds a creation date to the README.md"
+editor AddCreationDateToReadme
+
+with file f when path = "README.md"
+	do replace "{{creation_date}}" { new Date().toISOString().split('T')[0] }
+
+
+@description "Delete license file from the template content"
+editor DeleteLicense
+
+with project p
+	do deleteFile "LICENSE"
