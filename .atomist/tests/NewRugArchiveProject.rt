@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 the original author or authors.
+ * Copyright © 2016 Atomist, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 scenario NewRugArchiveProject should create a ready-made .atomist directory and samples to get you up and working fast
 
 let project_name = "MyProject"
@@ -27,11 +28,17 @@ when
 
 then
   fileExists "README.md"
-  and fileExists ".atomist/manifest.yml"
-  and fileContains ".atomist/manifest.yml" version
-  and fileContains ".atomist/manifest.yml" project_name
-  and fileContains ".atomist/manifest.yml" group_id
-  and { !result.fileContains("README.md", "creation_date") }
+    and { result.fileExists("README.md") }
+    and fileExists ".atomist/manifest.yml"
+    and fileContains ".atomist/manifest.yml" version
+    and fileContains ".atomist/manifest.yml" project_name
+    and fileContains ".atomist/manifest.yml" group_id
+    and { !result.fileContains("README.md", "creation_date") }
+    and fileExists ".atomist/editors/AddReadme.rug"
+    and fileExists ".atomist/tests/AddReadme.rt"
+    and fileExists ".atomist/templates/readme.vm"
+    and { !result.fileExists("CHANGELOG.md") }
+    and { !result.fileExists("CODE_OF_CONDUCT.md") }
 
 scenario NewRugArchiveProject should create a ready-made .atomist directory and samples with default 0.1.0 version
 
@@ -47,8 +54,13 @@ when
 
 then
   fileExists "README.md"
-  and fileExists ".atomist/manifest.yml"
-  and fileContains ".atomist/manifest.yml" "0.1.0"
-  and fileContains ".atomist/manifest.yml" project_name
-  and fileContains ".atomist/manifest.yml" group_id
-  and { !result.fileContains("README.md", "creation_date") }
+    and fileExists ".atomist/manifest.yml"
+    and fileContains ".atomist/manifest.yml" "0.1.0"
+    and fileContains ".atomist/manifest.yml" project_name
+    and fileContains ".atomist/manifest.yml" group_id
+    and { !result.fileContains("README.md", "creation_date") }
+    and fileExists ".atomist/editors/AddReadme.rug"
+    and fileExists ".atomist/tests/AddReadme.rt"
+    and fileExists ".atomist/templates/readme.vm"
+    and { !result.fileExists("CHANGELOG.md") }
+    and { !result.fileExists("CODE_OF_CONDUCT.md") }

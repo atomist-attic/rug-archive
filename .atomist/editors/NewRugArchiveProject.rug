@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 the original author or authors.
+ * Copyright © 2016 Atomist, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,72 +13,106 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+@description "creates a new Rug Archive project"
 @tag "rug"
 @tag "atomist"
-@description "creates a new Rug Archive project"
 @generator
 editor NewRugArchiveProject
 
 uses atomist-rugs.common-editors.RemoveApacheSoftwareLicense20
 
-@maxLength 21
-@description "Name of your new project."
 @displayName "Project Name"
+@description "name of your new project"
+@validInput "a valid GitHub repo name containing only alphanumeric, ., -, and _ characters and 21 characters or less to avoid Slack truncating the name when creating a channel for the repo"
+@minLength 1
+@maxLength 21
 param project_name: @project_name
 
-@description "Group id: Used by Maven"
 @displayName "Group ID"
-@validInput "A valid Maven Group ID, often used to indicate your company, group or open source project"
+@description "Maven group identifier, often used to provide a namespace for your rugs, e.g., company-rugs, typically the GitHub owner"
+@validInput "a valid Maven group ID, which starts with a letter, -, or _ and contains only alphanumeric, -, and _ characters and may having leading period separated identifiers starting with letters or underscores and containing only alphanumeric and _ characters."
+@optional
+@default "mygroup"
 param group_id: @group_id
 
-@default "0.1.0"
-@displayName "Semantic Version"
+@displayName "Version"
+@description "initial version of the project, e.g., 1.2.3"
+@validInput "a valid semantic version, http://semver.org"
 @optional
-@description "A Semantic Version number of the form: MAJOR.MINOR.PATCH"
-@validInput "MAJOR.MINOR.PATCH"
+@default "0.1.0"
 param version: @semantic_version
 
-@default "My new project"
+@displayName "Project Description"
+@description "short descriptive text describing the new project"
+@minLength 1
+@validInput "free text"
 @optional
-@description "Description of the new project"
-@displayName "description"
-@validInput "Free Text"
-param description: ^.*$
+@default "My new project"
+param description: @any
 
 SwitchReadmes
 AddBasicRugArchiveManifestYml
 RemoveApacheSoftwareLicense20
+RemoveHelperFiles
 AddCreationDateToReadme
+AddSimpleRug
 
-@description "Switches READMEs replacing markers with a set of parameters"
+@description "replaces README using project name and description"
+@tag "readme"
+@tag "documentation"
 editor SwitchReadmes
 
-@description "Name of the new project"
-@displayName "Name"
+@displayName "Project Name"
+@description "name of your new project"
+@validInput "a valid GitHub repo name containing only alphanumeric, ., -, and _ characters and 21 characters or less to avoid Slack truncating the name when creating a channel for the repo"
+@minLength 1
+@maxLength 21
 param project_name: @project_name
 
-@default ""
+@displayName "Project Description"
+@description "short descriptive text describing the new project"
+@minLength 1
+@validInput "free text"
 @optional
-@description "Description of the new project"
-@displayName "description"
-@validInput "Free Text"
-param description: ^.*$
+@default "My new project"
+param description: @any
 
-let template = "readme.vm"
+let readmeBase = "README.md"
 
 with project
-	do merge template to "README.md"
+  do merge { readmeBase + ".mustache" } to readmeBase
+
+@description "removes unneeded progenerator project files"
+@tag "documentation"
+editor RemoveHelperFiles
+
+with project
+  begin
+    do deleteFile "CHANGELOG.md"
+    do deleteFile "CODE_OF_CONDUCT.md"
+  end
 
 
-@description "Adds a creation date to the README.md"
+@description "adds a creation date to the README.md"
+@tag "readme"
+@tag "documentation"
 editor AddCreationDateToReadme
 
 with file when path = "README.md"
-	do replace "{{creation_date}}" { new Date().toISOString().split('T')[0] }
+  do replace "{{creation_date}}" { new Date().toISOString().split('T')[0] }
 
 
-@description "Delete license file from the template content"
-editor DeleteLicense
+@description "adds a simple Rug Editor and its tests"
+@tag "rug"
+@tag "atomist"
+editor AddSimpleRug
+
+let editorBase = "AddReadme"
 
 with project
-	do deleteFile "LICENSE"
+  begin
+    do merge { editorBase + ".rug.vm" } to { ".atomist/editors/" + editorBase + ".rug" }
+    do merge { editorBase + ".rt.vm" } to { ".atomist/tests/" + editorBase + ".rt" }
+    do merge "readme.vm.mustache" to ".atomist/templates/readme.vm"
+  end
