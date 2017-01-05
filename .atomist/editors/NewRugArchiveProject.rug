@@ -80,14 +80,14 @@ param description: @any
 
 let readmeBase = "README.md"
 
-with project
+with Project
   do merge { readmeBase + ".mustache" } to readmeBase
 
 @description "removes unneeded progenerator project files"
 @tag "documentation"
 editor RemoveHelperFiles
 
-with project
+with Project
   begin
     do deleteFile "CHANGELOG.md"
     do deleteFile "CODE_OF_CONDUCT.md"
@@ -99,7 +99,7 @@ with project
 @tag "documentation"
 editor AddCreationDateToReadme
 
-with file when path = "README.md"
+with File when path = "README.md"
   do replace "{{creation_date}}" { new Date().toISOString().split('T')[0] }
 
 
@@ -110,7 +110,7 @@ editor AddSimpleRug
 
 let editorBase = "AddReadme"
 
-with project
+with Project
   begin
     do merge { editorBase + ".rug.vm" } to { ".atomist/editors/" + editorBase + ".rug" }
     do merge { editorBase + ".rt.vm" } to { ".atomist/tests/" + editorBase + ".rt" }

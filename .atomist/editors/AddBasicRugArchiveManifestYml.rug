@@ -43,5 +43,5 @@ param version: @semantic_version
 
 let manifestTemplate = "manifest.vm"
 
-with project p
+with Project p
 	do merge manifestTemplate to ".atomist/manifest.yml"
