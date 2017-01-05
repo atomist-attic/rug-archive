@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 Brand new rug release
 
-[0.1.0]: https://github.com/atomist-rugs/rug-archive/compare/0.1.0...0.2.0
+[0.2.0]: https://github.com/atomist-rugs/rug-archive/compare/0.1.0...0.2.0
 
 ### Changed
 
