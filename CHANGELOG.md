@@ -7,7 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-[Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.2.0...HEAD
+[Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.2.1...HEAD
+
+## [0.2.1] - 2017-01-09
+
+Use that new rug release
+
+[0.2.1]: https://github.com/atomist-rugs/rug-archive/compare/0.2.0...0.2.1
+
+### Fixed
+
+-   Corrected version of rug in generated manifest.yml
 
 ## [0.2.0] - 2017-01-05
 
