@@ -22,9 +22,9 @@ editor AddBasicRugArchiveManifestYml
 
 @displayName "Project Name"
 @description "name of your new project"
-@validInput "a valid GitHub repo name containing only alphanumeric, ., -, and _ characters and 21 characters or less to avoid Slack truncating the name when creating a channel for the repo"
+@validInput "a valid GitHub repo name containing only alphanumeric, ., -, and _"
 @minLength 1
-@maxLength 21
+@maxLength 100
 param project_name: @project_name
 
 @displayName "Group ID"
