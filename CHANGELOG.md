@@ -7,7 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-[Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.2.1...HEAD
+[Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.3.0...HEAD
+
+## [0.3.0]
+
+[0.3.0]: https://github.com/atomist-rugs/rug-archive/compare/0.2.1...0.3.0
+
+Longer release.
+
+### Changed
+
+-   Increased project name length limit to 100
+
+-   Update dependencies to latest versions
 
 ## [0.2.1] - 2017-01-09
 
