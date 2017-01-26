@@ -7,13 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-[Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.3.0...HEAD
+[Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.4.0...HEAD
+
+## [0.4.0]
+
+[0.4.0]: https://github.com/atomist-rugs/rug-archive/compare/0.3.0...0.4.0
+
+Friends don't let friends use templates release
+
+### Changed
+
+-   Replace use of templates with copy and modify
 
 ## [0.3.0]
 
 [0.3.0]: https://github.com/atomist-rugs/rug-archive/compare/0.2.1...0.3.0
 
-Longer release.
+Longer release
 
 ### Changed
 
