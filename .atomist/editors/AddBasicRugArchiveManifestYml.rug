@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-@description "adds a new basic Rug Archive manifest.yml to a project"
+@description "adds a basic Rug Archive manifest.yml to a project"
 @tag "rug"
 @tag "atomist"
 @tag "yaml"
@@ -41,7 +41,11 @@ param group_id: @group_id
 @default "0.1.0"
 param version: @semantic_version
 
-let manifestTemplate = "manifest.vm"
-
-with Project p
-	do merge manifestTemplate to ".atomist/manifest.yml"
+with Project
+  begin
+	do copyEditorBackingFileOrFail ".atomist/manifest.yml"
+    do replace "atomist-rugs" group_id
+    do replace "rug-archive" project_name
+    do regexpReplace '\nversion:.*' { "\n" + 'version: "' + version + '"' }
+    do regexpReplace '\ndependencies:[\s\S]*extensions:' { "\ndependencies:\nextensions:" }
+  end

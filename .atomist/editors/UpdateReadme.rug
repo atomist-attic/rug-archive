@@ -14,13 +14,10 @@
  * limitations under the License.
  */
 
-@description "creates a new Rug Archive project"
-@tag "rug"
-@tag "atomist"
-@generator
-editor NewRugArchiveProject
-
-uses atomist-rugs.common-editors.RemoveApacheSoftwareLicense20
+@description "updates README using project name, group, and description"
+@tag "readme"
+@tag "documentation"
+editor UpdateReadme
 
 @displayName "Project Name"
 @description "name of your new project"
@@ -36,46 +33,58 @@ param project_name: @project_name
 @default "mygroup"
 param group_id: @group_id
 
-@displayName "Version"
-@description "initial version of the project, e.g., 1.2.3"
-@validInput "a valid semantic version, http://semver.org"
-@optional
-@default "0.1.0"
-param version: @semantic_version
-
 @displayName "Project Description"
 @description "short descriptive text describing the new project"
 @minLength 1
 @validInput "free text"
 @optional
-@default "My new project"
+@default "my new project"
 param description: @any
 
-UpdateReadme
-AddBasicRugArchiveManifestYml
-RemoveApacheSoftwareLicense20
-RemoveHelperFiles
-AddSimpleRug
+let addReadmeText = """### AddReadme
 
+The AddReadme editor adds a GitHub-like `README.md` to a project.
 
-@description "removes unneeded progenerator project files"
-@tag "documentation"
-editor RemoveHelperFiles
+#### Prerequisites
 
-with Project
+Before running this editor, you must have the following prerequisites
+satisfied.
+
+*   A source code repository
+
+#### Parameters
+
+To run this editor, you must supply the following parameters.
+
+Name | Required | Default | Description
+-----|----------|---------|------------
+`project_name` | Yes | | A valid GitHub repository name.
+`description` | No | My new project | A brief description of the project between 1 and 100 characters.
+
+[semver]: http://semver.org
+
+#### Running
+
+Run it as follows:
+
+```
+\$ cd to/the/repo
+\$ rug edit atomist-rugs:rug-archive:AddReadme \
+    project_name=fun-project \
+    description='A project that needs a README'
+```
+
+This will create a simple `README.md` file in the top-level directory
+of the source code repository.  If you are happy with the change,
+commit the changes.
+
+"""
+
+with File when path = "README.md"
   begin
-    do deleteFile "CHANGELOG.md"
-    do deleteFile "CODE_OF_CONDUCT.md"
-  end
-
-
-@description "adds a simple Rug Editor and its tests"
-@tag "rug"
-@tag "atomist"
-editor AddSimpleRug
-
-with Project
-  begin
-    do copyEditorBackingFileOrFail ".atomist/editors/AddReadme.rug"
-    do copyEditorBackingFileOrFail ".atomist/tests/AddReadme.rt"
+    do replace "# Rug Archive" { "# " + project_name }
+    do regexpReplace 'a Generator for a Rug Archive[\s\S]*?\?' description
+    do regexpReplace '\n### NewRugArchiveProject[\s\S]*\n## Support' { addReadmeText + "## Support" }
+    do replace "rug-archive" project_name
+    do replace "atomist-rugs" group_id
   end
