@@ -7,7 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-[Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.4.0...HEAD
+[Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.4.1...HEAD
+
+## [0.4.1]
+
+[0.4.1]: https://github.com/atomist-rugs/rug-archive/compare/0.4.0...0.4.1
+
+Escape release
+
+### Fixed
+
+-   Properly escape backslashes in replacement text
 
 ## [0.4.0]
 
