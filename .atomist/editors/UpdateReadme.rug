@@ -41,7 +41,8 @@ param group_id: @group_id
 @default "my new project"
 param description: @any
 
-let addReadmeText = """### AddReadme
+let addReadmeText = """
+### AddReadme
 
 The AddReadme editor adds a GitHub-like `README.md` to a project.
 
@@ -69,8 +70,8 @@ Run it as follows:
 
 ```
 \$ cd to/the/repo
-\$ rug edit atomist-rugs:rug-archive:AddReadme \
-    project_name=fun-project \
+\$ rug edit atomist-rugs:rug-archive:AddReadme \\
+    project_name=fun-project \\
     description='A project that needs a README'
 ```
 
