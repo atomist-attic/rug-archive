@@ -43,7 +43,7 @@ param version: @semantic_version
 
 with Project
   begin
-	do copyEditorBackingFileOrFail ".atomist/manifest.yml"
+	do copyEditorBackingFileOrFail ".atomist/templates/manifest.yml" ".atomist/manifest.yml"
     do replace "atomist-rugs" group_id
     do replace "rug-archive" project_name
     do regexpReplace '\nversion:.*' { "\n" + 'version: "' + version + '"' }
