@@ -28,8 +28,8 @@ when
 then
   fileExists manifest
     and dump manifest
-    and fileContains manifest { "artifact: " + project_name }
-    and fileContains manifest "group: mygroup"
+    and fileContains manifest { 'artifact: "' + project_name + '"' }
+    and fileContains manifest 'group: "mygroup"'
     and fileContains manifest 'version: "0.1.0"'
     and { !result.fileContains(manifest, "atomist-rugs") }
     and { !result.fileContains(manifest, "rug-archive") }
@@ -51,8 +51,8 @@ when
 
 then
   fileExists manifest
-    and fileContains manifest { "artifact: " + project_name }
-    and fileContains manifest { "group: " + group_id }
+    and fileContains manifest { 'artifact: "' + project_name + '"' }
+    and fileContains manifest { 'group: "' + group_id + '"' }
     and fileContains manifest { 'version: "' + version + '"' }
     and { !result.fileContains(manifest, "atomist-rugs") }
     and { !result.fileContains(manifest, "rug-archive") }
