@@ -7,17 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-[Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.4.2...HEAD
+[Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.6.0...HEAD
 
-## [0.4.2]
+## [0.6.0]
 
-[0.4.2]: https://github.com/atomist-rugs/rug-archive/compare/0.4.1...0.4.2
+[0.6.0]: https://github.com/atomist-rugs/rug-archive/compare/0.5.0...0.6.0
 
 Cleaning release
 
 ### Fixed
 
 -   Do a more thorough cleaning of the generated manifest.yml
+
+## [0.5.0]
+
+[0.5.0]: https://github.com/atomist-rugs/rug-archive/compare/0.4.1...0.5.0
+
+Re-template release
+
+### Fixed
+
+-   Use a template for manifest.yml since generated one has extra stuff
 
 ## [0.4.1]
 
