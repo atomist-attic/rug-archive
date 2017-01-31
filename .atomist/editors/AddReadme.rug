@@ -26,12 +26,11 @@ let content = """# {{project_name}}
 with Project
   begin
     do deleteFile readme
-    do copyEditorBackingFileOrFail readme
+    do addFile readme content
   end
 
 with File when path = readme
   begin
-    do regexpReplace '[\s\S]*' content
     do replace "{{project_name}}" project_name
     do replace "{{description}}" description
   end

@@ -19,6 +19,8 @@ Longer release
 
 -   Increase maximum length of project name in AddReadme to 50
 
+-   Use addFile in AddReadme, as it is more appropriate
+
 ## [0.6.0]
 
 [0.6.0]: https://github.com/atomist-rugs/rug-archive/compare/0.5.0...0.6.0
