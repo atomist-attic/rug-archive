@@ -5,9 +5,9 @@ editor AddReadme
 
 @displayName "Project Name"
 @description "Name of the new project"
-@validInput "A valid GitHub project name, which has only alphanumeric, -, ., and _ characters, less than 22 characters"
+@validInput "A valid GitHub project name, which has only alphanumeric, -, ., and _ characters"
 @minLength 1
-@maxLength 21
+@maxLength 50
 param project_name: @project_name
 
 @displayName "Project Description"
