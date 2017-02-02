@@ -36,18 +36,18 @@ then
     and fileExists ".atomist/tests/AddReadme.rt"
     and { !result.fileExists("CHANGELOG.md") }
     and { !result.fileExists("CODE_OF_CONDUCT.md") }
-    # uncomment when generator tests work
-    # and fileExists "README.md"
-    # and fileContains "README.md" { "# " + project_name }
-    # and fileContains "README.md" description
-    # and fileContains "README.md" { "https://travis-ci.org/" + group_id + "/" + project_name + ".svg?branch=master" }
-    # and fileContains "README.md" "[![Slack Status](https://join.atomist.com/badge.svg)](https://join.atomist.com)"
-    # and { !result.fileContains("README.md", "### NewRugArchiveProject") }
-    # and { !result.fileContains("README.md", "ruggery") }
-    # and fileContains "README.md" "## Support"
-    # and fileContains "README.md" "## Development"
-    # and fileContains "README.md" "---\nCreated by [Atomist][atomist]."
-    # and fileContains "README.md" "Need Help?  [Join our Slack team][slack]."
+    and { !result.fileExists(".travis.yml") }
+    and fileExists "README.md"
+    and fileContains "README.md" { "# " + project_name }
+    and fileContains "README.md" description
+    and fileContains "README.md" { "https://travis-ci.org/" + group_id + "/" + project_name + ".svg?branch=master" }
+    and fileContains "README.md" "[![Slack Status](https://join.atomist.com/badge.svg)](https://join.atomist.com)"
+    and { !result.fileContains("README.md", "### NewRugArchiveProject") }
+    and { !result.fileContains("README.md", "ruggery") }
+    and fileContains "README.md" "## Support"
+    and fileContains "README.md" "## Development"
+    and fileContains "README.md" { "---\nCreated by [Atomist][atomist]." }
+    and fileContains "README.md" "Need Help?  [Join our Slack team][slack]."
 
 scenario NewRugArchiveProject should create a ready-made .atomist directory and samples using defaults
 
@@ -68,15 +68,15 @@ then
     and fileExists ".atomist/tests/AddReadme.rt"
     and { !result.fileExists("CHANGELOG.md") }
     and { !result.fileExists("CODE_OF_CONDUCT.md") }
-    # uncomment when generator tests work
-    # and fileExists "README.md"
-    # and fileContains "README.md" { "# " + project_name }
-    # and fileContains "README.md" "My new project"
-    # and fileContains "README.md" { "https://travis-ci.org/mygroup/" + project_name + ".svg?branch=master" }
-    # and fileContains "README.md" "[![Slack Status](https://join.atomist.com/badge.svg)](https://join.atomist.com)"
-    # and { !result.fileContains("README.md", "### NewRugArchiveProject") }
-    # and { !result.fileContains("README.md", "ruggery") }
-    # and fileContains "README.md" "## Support"
-    # and fileContains "README.md" "## Development"
-    # and fileContains "README.md" "---\nCreated by [Atomist][atomist]."
-    # and fileContains "README.md" "Need Help?  [Join our Slack team][slack]."
+    and { !result.fileExists(".travis.yml") }
+    and fileExists "README.md"
+    and fileContains "README.md" { "# " + project_name }
+    and fileContains "README.md" "My new project"
+    and fileContains "README.md" { "https://travis-ci.org/mygroup/" + project_name + ".svg?branch=master" }
+    and fileContains "README.md" "[![Slack Status](https://join.atomist.com/badge.svg)](https://join.atomist.com)"
+    and { !result.fileContains("README.md", "### NewRugArchiveProject") }
+    and { !result.fileContains("README.md", "ruggery") }
+    and fileContains "README.md" "## Support"
+    and fileContains "README.md" "## Development"
+    and fileContains "README.md" { "---\nCreated by [Atomist][atomist]." }
+    and fileContains "README.md" "Need Help?  [Join our Slack team][slack]."

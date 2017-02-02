@@ -66,6 +66,7 @@ with Project
   begin
     do deleteFile "CHANGELOG.md"
     do deleteFile "CODE_OF_CONDUCT.md"
+    do deleteFile ".travis.yml"
   end
 
 
