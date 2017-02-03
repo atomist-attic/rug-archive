@@ -7,7 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-[Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.7.0...HEAD
+[Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.8.1...HEAD
+
+## [0.8.1]
+
+[0.8.1]: https://github.com/atomist-rugs/rug-archive/compare/0.8.0...0.8.1
+
+Generator release
+
+### Changed
+
+-   Use generator keyword
 
 ## [0.8.0]
 

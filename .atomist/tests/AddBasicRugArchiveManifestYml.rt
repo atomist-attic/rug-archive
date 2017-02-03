@@ -27,7 +27,6 @@ when
 
 then
   fileExists manifest
-    and dump manifest
     and fileContains manifest { 'artifact: "' + project_name + '"' }
     and fileContains manifest 'group: "mygroup"'
     and fileContains manifest 'version: "0.1.0"'

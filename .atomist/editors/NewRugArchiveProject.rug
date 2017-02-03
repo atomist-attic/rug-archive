@@ -17,8 +17,7 @@
 @description "creates a new Rug Archive project"
 @tag "rug"
 @tag "atomist"
-@generator
-editor NewRugArchiveProject
+generator NewRugArchiveProject
 
 uses atomist-rugs.common-editors.RemoveApacheSoftwareLicense20
 
