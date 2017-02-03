@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.8.1...HEAD
 
+## [0.9.0]
+
+[0.9.0]: https://github.com/atomist-rugs/rug-archive/compare/0.8.1...0.9.0
+
+Cleanerer release
+
+### Changed
+
+-   Have a clean .atomist.yml in generated project
+
 ## [0.8.1]
 
 [0.8.1]: https://github.com/atomist-rugs/rug-archive/compare/0.8.0...0.8.1
