@@ -9,13 +9,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.7.0...HEAD
 
+## [0.8.0]
+
+[0.8.0]: https://github.com/atomist-rugs/rug-archive/compare/0.7.0...0.8.0
+
+Cleaner release
+
+### Changed
+
+-   Remove .travis.yml from generated project
+
+-   Update to latest rug
+
 ## [0.7.0]
 
 [0.7.0]: https://github.com/atomist-rugs/rug-archive/compare/0.6.0...0.7.0
 
 Longer release
 
-### Changes
+### Changed
 
 -   Increase maximum length of project name in AddReadme to 50
 
