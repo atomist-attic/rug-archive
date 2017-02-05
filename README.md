@@ -8,6 +8,8 @@ project.  Meta, isn't it?
 
 [rug]: http://docs.atomist.com/
 
+After you create a project with this generator, you may enjoy the compatible editors in [atomist-rugs:rug-editors](https://github.com/atomist-rugs/rug-editors).
+
 ## Rugs
 
 ### NewRugArchiveProject
