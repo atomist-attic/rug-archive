@@ -7,9 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-[Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.10.0...HEAD
+[Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.11.0...HEAD
 
-## [0.10.0]
+## [0.11.0] - 2017-02-06
+
+[0.11.0]: https://github.com/atomist-rugs/rug-archive/compare/0.10.0...0.11.0
+
+De-confusion release
+
+### Changed
+
+-   Simplify placeholder name in AddReadme content
+
+## [0.10.0] - 2017-02-06
 
 [0.10.0]: https://github.com/atomist-rugs/rug-archive/compare/0.9.0...0.10.0
 
@@ -19,7 +29,7 @@ Less is more release
 
 -   AddReame uses Project.name() rather than a project_name parameter
 
-## [0.9.0]
+## [0.9.0] - 2017-02-02
 
 [0.9.0]: https://github.com/atomist-rugs/rug-archive/compare/0.8.1...0.9.0
 
@@ -29,7 +39,7 @@ Cleanerer release
 
 -   Have a clean .atomist.yml in generated project
 
-## [0.8.1]
+## [0.8.1] - 2017-02-02
 
 [0.8.1]: https://github.com/atomist-rugs/rug-archive/compare/0.8.0...0.8.1
 
@@ -39,7 +49,7 @@ Generator release
 
 -   Use generator keyword
 
-## [0.8.0]
+## [0.8.0] - 2017-02-02
 
 [0.8.0]: https://github.com/atomist-rugs/rug-archive/compare/0.7.0...0.8.0
 
@@ -51,7 +61,7 @@ Cleaner release
 
 -   Update to latest rug
 
-## [0.7.0]
+## [0.7.0] - 2017-01-31
 
 [0.7.0]: https://github.com/atomist-rugs/rug-archive/compare/0.6.0...0.7.0
 
@@ -63,7 +73,7 @@ Longer release
 
 -   Use addFile in AddReadme, as it is more appropriate
 
-## [0.6.0]
+## [0.6.0] - 2017-01-27
 
 [0.6.0]: https://github.com/atomist-rugs/rug-archive/compare/0.5.0...0.6.0
 
@@ -73,7 +83,7 @@ Cleaning release
 
 -   Do a more thorough cleaning of the generated manifest.yml
 
-## [0.5.0]
+## [0.5.0] - 2017-01-27
 
 [0.5.0]: https://github.com/atomist-rugs/rug-archive/compare/0.4.1...0.5.0
 
@@ -83,7 +93,7 @@ Re-template release
 
 -   Use a template for manifest.yml since generated one has extra stuff
 
-## [0.4.1]
+## [0.4.1] - 2017-01-25
 
 [0.4.1]: https://github.com/atomist-rugs/rug-archive/compare/0.4.0...0.4.1
 
@@ -93,7 +103,7 @@ Escape release
 
 -   Properly escape backslashes in replacement text
 
-## [0.4.0]
+## [0.4.0] - 2017-01-25
 
 [0.4.0]: https://github.com/atomist-rugs/rug-archive/compare/0.3.0...0.4.0
 
@@ -103,7 +113,7 @@ Friends don't let friends use templates release
 
 -   Replace use of templates with copy and modify
 
-## [0.3.0]
+## [0.3.0] - 2017-01-24
 
 [0.3.0]: https://github.com/atomist-rugs/rug-archive/compare/0.2.1...0.3.0
 

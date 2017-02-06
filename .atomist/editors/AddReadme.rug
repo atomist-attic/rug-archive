@@ -11,7 +11,7 @@ editor AddReadme
 param description: @any
 
 let readme = "README.md"
-let content = """# {{project_name}}
+let content = """# {{name}}
 
 {{description}}
 """
@@ -23,7 +23,7 @@ with Project p
 
     with File when path = readme
       begin
-        do replace "{{project_name}}" { p.name() }
+        do replace "{{name}}" { p.name() }
         do replace "{{description}}" description
       end
   end
