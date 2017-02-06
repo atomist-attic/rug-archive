@@ -7,7 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-[Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.8.1...HEAD
+[Unreleased]: https://github.com/atomist-rugs/rug-archive/compare/0.10.0...HEAD
+
+## [0.10.0]
+
+[0.10.0]: https://github.com/atomist-rugs/rug-archive/compare/0.9.0...0.10.0
+
+Less is more release
+
+### Changed
+
+-   AddReame uses Project.name() rather than a project_name parameter
 
 ## [0.9.0]
 

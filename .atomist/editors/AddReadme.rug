@@ -3,13 +3,6 @@
 @tag "documentation"
 editor AddReadme
 
-@displayName "Project Name"
-@description "Name of the new project"
-@validInput "A valid GitHub project name, which has only alphanumeric, -, ., and _ characters"
-@minLength 1
-@maxLength 50
-param project_name: @project_name
-
 @displayName "Project Description"
 @description "One-sentence description of the new project"
 @validInput "A string 1-90 characters long"
@@ -23,14 +16,14 @@ let content = """# {{project_name}}
 {{description}}
 """
 
-with Project
+with Project p
   begin
     do deleteFile readme
     do addFile readme content
-  end
 
-with File when path = readme
-  begin
-    do replace "{{project_name}}" project_name
-    do replace "{{description}}" description
+    with File when path = readme
+      begin
+        do replace "{{project_name}}" { p.name() }
+        do replace "{{description}}" description
+      end
   end
