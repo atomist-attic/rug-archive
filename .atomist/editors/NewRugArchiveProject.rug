@@ -56,7 +56,6 @@ AddBasicRugArchiveManifestYml
 RemoveApacheSoftwareLicense20
 RemoveHelperFiles
 AddCreationDateToReadme
-AddSimpleRug
 
 @description "replaces README using project name and description"
 @tag "readme"
@@ -87,11 +86,10 @@ with Project
 @tag "documentation"
 editor RemoveHelperFiles
 
-with Project
-  begin
-    do deleteFile "CHANGELOG.md"
-    do deleteFile "CODE_OF_CONDUCT.md"
-  end
+with Project begin
+  do deleteFile "CHANGELOG.md"
+  do deleteFile "CODE_OF_CONDUCT.md"
+end
 
 
 @description "adds a creation date to the README.md"
@@ -101,18 +99,3 @@ editor AddCreationDateToReadme
 
 with File when path = "README.md"
   do replace "{{creation_date}}" { new Date().toISOString().split('T')[0] }
-
-
-@description "adds a simple Rug Editor and its tests"
-@tag "rug"
-@tag "atomist"
-editor AddSimpleRug
-
-let editorBase = "AddReadme"
-
-with Project
-  begin
-    do merge { editorBase + ".rug.vm" } to { ".atomist/editors/" + editorBase + ".rug" }
-    do merge { editorBase + ".rt.vm" } to { ".atomist/tests/" + editorBase + ".rt" }
-    do merge "readme.vm.mustache" to ".atomist/templates/readme.vm"
-  end
