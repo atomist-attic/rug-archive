@@ -1,0 +1,62 @@
+scenario AddReadme should add README.md
+
+let readme = "README.md"
+let newDescription = "Boy Wizard"
+
+given
+  ArchiveRoot
+
+when
+  AddReadme description = newDescription
+
+then
+  fileExists readme
+	and fileContains readme { result.name() }
+	and fileContains readme newDescription
+    and { !result.fileContains(readme, "##") }
+    and { !result.fileContains(readme, "travis-ci.org") }
+    and { !result.fileContains(readme, "NewRugArchiveProject") }
+
+
+scenario AddReadme should add README.md to empty project
+
+let readme = "README.md"
+let newDescription = "Boy Wizard"
+
+given
+  Empty
+
+when
+  AddReadme description = newDescription
+
+then
+  fileExists readme
+	and fileContains readme { result.name() }
+	and fileContains readme newDescription
+    and { !result.fileContains(readme, "##") }
+    and { !result.fileContains(readme, "travis-ci.org") }
+    and { !result.fileContains(readme, "NewRugArchiveProject") }
+
+
+scenario AddReadme should reject invalid parameter value
+
+given
+  ArchiveRoot
+
+when
+  AddReadme description = ""
+
+then
+  InvalidParameters
+
+
+scenario AddReadme should reject missing parameter
+
+given
+  ArchiveRoot
+
+when
+  AddReadme
+
+then
+  MissingParameters

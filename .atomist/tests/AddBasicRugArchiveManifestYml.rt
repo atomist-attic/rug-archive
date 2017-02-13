@@ -1,5 +1,5 @@
 /*
- * Copyright © 2016 Atomist, Inc.
+ * Copyright © 2017 Atomist, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-scenario AddBasicRugArchiveManifestYml to an existing project
+scenario AddBasicRugArchiveManifestYml defaults to an existing project
 
 let project_name = "MyProject"
+let manifest = ".atomist/manifest.yml"
 
 given
   Empty
@@ -25,4 +26,33 @@ when
   AddBasicRugArchiveManifestYml
 
 then
-  fileExists ".atomist/manifest.yml"
+  fileExists manifest
+    and fileContains manifest { 'artifact: "' + project_name + '"' }
+    and fileContains manifest 'group: "mygroup"'
+    and fileContains manifest 'version: "0.1.0"'
+    and { !result.fileContains(manifest, "atomist-rugs") }
+    and { !result.fileContains(manifest, "rug-archive") }
+    and { !result.fileContains(manifest, "common-editors") }
+
+
+scenario AddBasicRugArchiveManifestYml to an existing project
+
+let project_name = "MyProject"
+let group_id = "persian-rugs"
+let version = "3.5.7"
+let manifest = ".atomist/manifest.yml"
+
+given
+  Empty
+
+when
+  AddBasicRugArchiveManifestYml
+
+then
+  fileExists manifest
+    and fileContains manifest { 'artifact: "' + project_name + '"' }
+    and fileContains manifest { 'group: "' + group_id + '"' }
+    and fileContains manifest { 'version: "' + version + '"' }
+    and { !result.fileContains(manifest, "atomist-rugs") }
+    and { !result.fileContains(manifest, "rug-archive") }
+    and { !result.fileContains(manifest, "common-editors") }

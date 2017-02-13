@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-@description "adds a new basic Rug Archive manifest.yml to a project"
+@description "adds a basic Rug Archive manifest.yml to a project"
 @tag "rug"
 @tag "atomist"
 @tag "yaml"
@@ -22,9 +22,9 @@ editor AddBasicRugArchiveManifestYml
 
 @displayName "Project Name"
 @description "name of your new project"
-@validInput "a valid GitHub repo name containing only alphanumeric, ., -, and _ characters and 21 characters or less to avoid Slack truncating the name when creating a channel for the repo"
+@validInput "a valid GitHub repo name containing only alphanumeric, ., -, and _"
 @minLength 1
-@maxLength 21
+@maxLength 100
 param project_name: @project_name
 
 @displayName "Group ID"
@@ -41,7 +41,20 @@ param group_id: @group_id
 @default "0.1.0"
 param version: @semantic_version
 
-let manifestTemplate = "manifest.vm"
+let manifest = ".atomist/manifest.yml"
 
 with Project
-	do merge manifestTemplate to ".atomist/manifest.yml"
+  do copyEditorBackingFileOrFail manifest
+
+with File f when f.path = manifest begin
+  do regexpReplace "(?m)^group:.*" { 'group: "' + group_id + '"' }
+  do regexpReplace "(?m)^artifact:.*" { 'artifact: "' + project_name + '"' }
+  do regexpReplace "(?m)^version:.*" { 'version: "' + version + '"' }
+  do regexpReplace '(?m)^dependencies:\s*\n(\s*-.*\n)*' { "dependencies:\n" }
+  do regexpReplace '(?m)^extensions:\s*\n(\s*-.*\n)*' { "extensions:\n" }
+  do regexpReplace "(?m)^repo:.*\n" ""
+  do regexpReplace "(?m)^branch:.*\n" ""
+  do regexpReplace "(?m)^sha:.*\n" ""
+  do regexpReplace "(?m)^---\n" ""
+  do regexpReplace "(?m)^\n" ""
+end

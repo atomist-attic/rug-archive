@@ -1,0 +1,29 @@
+@description "adds a project specific README"
+@tag "readme"
+@tag "documentation"
+editor AddReadme
+
+@displayName "Project Description"
+@description "One-sentence description of the new project"
+@validInput "A string 1-90 characters long"
+@minLength 1
+@maxLength 90
+param description: @any
+
+let readme = "README.md"
+let content = """# {{name}}
+
+{{description}}
+"""
+
+with Project p
+  begin
+    do deleteFile readme
+    do addFile readme content
+
+    with File when path = readme
+      begin
+        do replace "{{name}}" { p.name() }
+        do replace "{{description}}" description
+      end
+  end

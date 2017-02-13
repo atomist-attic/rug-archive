@@ -16,9 +16,10 @@
 
 scenario NewRugArchiveProject should create a ready-made .atomist directory and samples to get you up and working fast
 
-let project_name = "MyProject"
+let project_name = "rugs-n-rugs"
 let group_id = "my.org"
 let version = "0.0.1"
+let description = "this is a test of the emergency broadcast system"
 
 given
   Empty
@@ -27,21 +28,29 @@ when
   NewRugArchiveProject
 
 then
-  fileExists "README.md"
-    and { result.fileExists("README.md") }
-    and fileExists ".atomist/manifest.yml"
+  fileExists ".atomist/manifest.yml"
     and fileContains ".atomist/manifest.yml" version
     and fileContains ".atomist/manifest.yml" project_name
     and fileContains ".atomist/manifest.yml" group_id
     and { !result.fileContains("README.md", "creation_date") }
     and { !result.fileExists("CHANGELOG.md") }
     and { !result.fileExists("CODE_OF_CONDUCT.md") }
+    and { !result.fileExists(".travis.yml") }
+    and fileExists "README.md"
+    and fileContains "README.md" { "# " + project_name }
+    and fileContains "README.md" description
+    and fileContains "README.md" { "https://travis-ci.org/" + group_id + "/" + project_name + ".svg?branch=master" }
+    and fileContains "README.md" "[![Slack Status](https://join.atomist.com/badge.svg)](https://join.atomist.com)"
+    and { !result.fileContains("README.md", "### NewRugArchiveProject") }
+    and { !result.fileContains("README.md", "ruggery") }
+    and fileContains "README.md" "## Support"
+    and fileContains "README.md" "## Development"
+    and fileContains "README.md" { "---\nCreated by [Atomist][atomist]." }
+    and fileContains "README.md" "Need Help?  [Join our Slack team][slack]."
 
-scenario NewRugArchiveProject should create a ready-made .atomist directory and samples with default 0.1.0 version
+scenario NewRugArchiveProject should create a ready-made .atomist directory and samples using defaults
 
-let project_name = "MyProject"
-let group_id = "my.org"
-let editor_name = "MyEditor"
+let project_name = "rug-rug-rug"
 
 given
   Empty
@@ -50,11 +59,22 @@ when
   NewRugArchiveProject
 
 then
-  fileExists "README.md"
-    and fileExists ".atomist/manifest.yml"
+  fileExists ".atomist/manifest.yml"
     and fileContains ".atomist/manifest.yml" "0.1.0"
     and fileContains ".atomist/manifest.yml" project_name
-    and fileContains ".atomist/manifest.yml" group_id
     and { !result.fileContains("README.md", "creation_date") }
+    and fileContains ".atomist/manifest.yml" "mygroup"
     and { !result.fileExists("CHANGELOG.md") }
     and { !result.fileExists("CODE_OF_CONDUCT.md") }
+    and { !result.fileExists(".travis.yml") }
+    and fileExists "README.md"
+    and fileContains "README.md" { "# " + project_name }
+    and fileContains "README.md" "My new project"
+    and fileContains "README.md" { "https://travis-ci.org/mygroup/" + project_name + ".svg?branch=master" }
+    and fileContains "README.md" "[![Slack Status](https://join.atomist.com/badge.svg)](https://join.atomist.com)"
+    and { !result.fileContains("README.md", "### NewRugArchiveProject") }
+    and { !result.fileContains("README.md", "ruggery") }
+    and fileContains "README.md" "## Support"
+    and fileContains "README.md" "## Development"
+    and fileContains "README.md" { "---\nCreated by [Atomist][atomist]." }
+    and fileContains "README.md" "Need Help?  [Join our Slack team][slack]."
