@@ -61,12 +61,13 @@ RemoveUnnecessaryFiles
 @tag "documentation"
 editor RemoveUnnecessaryFiles
 
-with Project begin
-  do deleteFile "CHANGELOG.md"
-  do deleteFile "CODE_OF_CONDUCT.md"
-  do deleteFile ".travis.yml"
-  do deleteFile ".atomist.yml"
-end
+with Project
+  begin
+    do deleteFile "CHANGELOG.md"
+    do deleteFile "CODE_OF_CONDUCT.md"
+    do deleteFile ".travis.yml"
+    do deleteFile ".atomist.yml"
+  end
 
 
 @description "adds a creation date to the README.md"
