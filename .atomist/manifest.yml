@@ -1,7 +1,7 @@
 group: atomist-rugs
 artifact: rug-archive
 version: "0.12.0"
-requires: "[0.11.0,1.0.0)"
+requires: "[0.12.0,1.0.0)"
 dependencies:
 - "atomist-rugs:common-editors:0.6.0"
 extensions:
