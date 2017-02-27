@@ -3,6 +3,10 @@
 [![Build Status](https://travis-ci.org/atomist-rugs/rug-archive.svg?branch=master)](https://travis-ci.org/atomist-rugs/rug-archive)
 [![Slack Status](https://join.atomist.com/badge.svg)](https://join.atomist.com)
 
+**DEPRECATED:** See [rug-project][]
+
+[rug-project]: https://github.com/atomist-rugs/rug-project
+
 This [Rug][rug] archive contains a Generator for a Rug Archive
 project.  Meta, isn't it?
 
