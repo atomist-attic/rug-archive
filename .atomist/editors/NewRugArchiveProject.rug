@@ -53,8 +53,8 @@ param description: @any
 UpdateReadme
 AddBasicRugArchiveManifestYml
 RemoveApacheSoftwareLicense20
+AddCreationDateToReadme
 RemoveUnnecessaryFiles
-AddSimpleRug
 
 
 @description "removes unneeded progenerator project files"
@@ -70,13 +70,10 @@ with Project
   end
 
 
-@description "adds a simple Rug Editor and its tests"
-@tag "rug"
-@tag "atomist"
-editor AddSimpleRug
+@description "adds a creation date to the README.md"
+@tag "readme"
+@tag "documentation"
+editor AddCreationDateToReadme
 
-with Project
-  begin
-    do copyEditorBackingFileOrFail ".atomist/editors/AddReadme.rug"
-    do copyEditorBackingFileOrFail ".atomist/tests/AddReadme.rt"
-  end
+with File when path = "README.md"
+  do replace "{{creation_date}}" { new Date().toISOString().split('T')[0] }

@@ -32,8 +32,7 @@ then
     and fileContains ".atomist/manifest.yml" version
     and fileContains ".atomist/manifest.yml" project_name
     and fileContains ".atomist/manifest.yml" group_id
-    and fileExists ".atomist/editors/AddReadme.rug"
-    and fileExists ".atomist/tests/AddReadme.rt"
+    and { !result.fileContains("README.md", "creation_date") }
     and { !result.fileExists("CHANGELOG.md") }
     and { !result.fileExists("CODE_OF_CONDUCT.md") }
     and { !result.fileExists(".travis.yml") }
@@ -63,9 +62,8 @@ then
   fileExists ".atomist/manifest.yml"
     and fileContains ".atomist/manifest.yml" "0.1.0"
     and fileContains ".atomist/manifest.yml" project_name
+    and { !result.fileContains("README.md", "creation_date") }
     and fileContains ".atomist/manifest.yml" "mygroup"
-    and fileExists ".atomist/editors/AddReadme.rug"
-    and fileExists ".atomist/tests/AddReadme.rt"
     and { !result.fileExists("CHANGELOG.md") }
     and { !result.fileExists("CODE_OF_CONDUCT.md") }
     and { !result.fileExists(".travis.yml") }
